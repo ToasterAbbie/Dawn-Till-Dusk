@@ -15,13 +15,17 @@ public class UIManagement : MonoBehaviour
                         buttonThree,
                         buttonFour,
                         buttonFive,
-                        bTextOne,
-                        bTextTwo,
-                        bTextThree,
-                        bTextFour,
-                        bTextFive;
+                        button1Text,
+                        button2Text,
+                        button3Text,
+                        button4Text,
+                        button5Text,
+                        foodLevel,
+                        wisdomLevel,
+                        continueButton,
+                        continueButtonText;
 
-    private GameObject[] buttonTexts, buttons;
+    private GameObject[] buttonTexts, buttons, statTexts;
 
     public Sprite defaultButton;
 
@@ -29,16 +33,26 @@ public class UIManagement : MonoBehaviour
     {
         image = GameObject.Find("EventImage");
         description = GameObject.Find("EventDescription");
+
         buttonOne = GameObject.Find("EventOptOne");
         buttonTwo = GameObject.Find("EventOptTwo");
         buttonThree = GameObject.Find("EventOptThree");
         buttonFour = GameObject.Find("EventOptFour");
         buttonFive = GameObject.Find("EventOptFive");
-        bTextOne = GameObject.Find("EventTextOne");
-        bTextTwo = GameObject.Find("EventTextTwo");
-        bTextThree = GameObject.Find("EventTextThree");
-        bTextFour = GameObject.Find("EventTextFour");
-        bTextFive = GameObject.Find("EventTextFive");
+
+        button1Text = GameObject.Find("EventTextOne");
+        button2Text = GameObject.Find("EventTextTwo");
+        button3Text = GameObject.Find("EventTextThree");
+        button4Text = GameObject.Find("EventTextFour");
+        button5Text = GameObject.Find("EventTextFive");
+
+        foodLevel = GameObject.Find("FoodLevel");
+        wisdomLevel = GameObject.Find("WisdomLevel");
+
+        continueButton = GameObject.Find("Continue");
+        continueButtonText = GameObject.Find("ContinueText");
+
+        DisableContinue();
 
         buttons = new GameObject[]
         {
@@ -51,11 +65,17 @@ public class UIManagement : MonoBehaviour
 
         buttonTexts = new GameObject[]
         {
-            bTextOne,
-            bTextTwo,
-            bTextThree,
-            bTextFour,
-            bTextFive
+            button1Text,
+            button2Text,
+            button3Text,
+            button4Text,
+            button5Text
+        };
+
+        statTexts = new GameObject[]
+        {
+            foodLevel,
+            wisdomLevel
         };
 
         eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
@@ -70,23 +90,35 @@ public class UIManagement : MonoBehaviour
     void ResetTexts()
     {
         description.GetComponent<Text>().text = " ";
-        for (int i = 0; i < buttonTexts.Length; i++)
+
+        foreach(GameObject button in buttonTexts)
         {
-            buttonTexts[i].GetComponent<Text>().text = " ";
+            button.GetComponent<Text>().text = " ";
         }
+
+        foreach (GameObject stat in statTexts)
+        {
+            stat.GetComponent<Text>().text = " ";
+        }
+
+        continueButtonText.GetComponent<Text>().text = " ";
     }
 
     void UpdateUIAccordingToEvent()
     {
         ResetTexts();
-        Event currentEvent = eventManager.events.allEvents[eventManager.CurrentEventName];
-        image.GetComponent<Image>().sprite = currentEvent.displayedImage;
-        description.GetComponent<Text>().text = currentEvent.mainDescription;
-        bTextOne.GetComponent<Text>().text = currentEvent.bOneText;
-        bTextTwo.GetComponent<Text>().text = currentEvent.bTwoText;
-        bTextThree.GetComponent<Text>().text = currentEvent.bThreeText;
-        bTextFour.GetComponent<Text>().text = currentEvent.bFourText;
-        bTextFive.GetComponent<Text>().text = currentEvent.bFiveText;
+        Event currentEvent = eventManager.CurrentEvent;
+        image.GetComponent<Image>().sprite = currentEvent.image;
+        description.GetComponent<Text>().text = currentEvent.description;
+
+        button1Text.GetComponent<Text>().text = getButtonText(currentEvent.event1);
+        button2Text.GetComponent<Text>().text = getButtonText(currentEvent.event2);
+        button3Text.GetComponent<Text>().text = getButtonText(currentEvent.event3);
+        button4Text.GetComponent<Text>().text = getButtonText(currentEvent.event4);
+        button5Text.GetComponent<Text>().text = getButtonText(currentEvent.event5);
+
+        foodLevel.GetComponent<Text>().text = eventManager.Food.ToString();
+        wisdomLevel.GetComponent<Text>().text = eventManager.Wisdom.ToString();
 
         for (int i = 0; i < buttonTexts.Length; i++)
         {
@@ -96,36 +128,69 @@ public class UIManagement : MonoBehaviour
                 buttons[i].GetComponent<Button>().interactable = false;
             }
         }
+
+        if (currentEvent.isLastEventInEncounter())
+        {
+            EnableContinue();
+        }
+    }
+
+    private string getButtonText(Event eventToCheck)
+    {
+        if (eventToCheck != null)
+        {
+            return eventToCheck.buttonText;
+        }
+
+        return " ";
     }
 
     public void ButtonOneDo()
     {
-        Event currentEvent = eventManager.events.allEvents[eventManager.CurrentEventName];
-        eventManager.CurrentEventName = currentEvent.bOneLinkedEvent;
+        Event currentEvent = eventManager.CurrentEvent;
+        eventManager.CurrentEvent = currentEvent.event1;
     }
 
     public void ButtonTwoDo()
     {
-        Event currentEvent = eventManager.events.allEvents[eventManager.CurrentEventName];
-        eventManager.CurrentEventName = currentEvent.bTwoLinkedEvent;
+        Event currentEvent = eventManager.CurrentEvent;
+        eventManager.CurrentEvent = currentEvent.event2;
     }
 
     public void ButtonThreeDo()
     {
-        Event currentEvent = eventManager.events.allEvents[eventManager.CurrentEventName];
-        eventManager.CurrentEventName = currentEvent.bThreeLinkedEvent;
+        Event currentEvent = eventManager.CurrentEvent;
+        eventManager.CurrentEvent = currentEvent.event3;
     }
 
     public void ButtonFourDo()
     {
-        Event currentEvent = eventManager.events.allEvents[eventManager.CurrentEventName];
-        eventManager.CurrentEventName = currentEvent.bFourLinkedEvent;
+        Event currentEvent = eventManager.CurrentEvent;
+        eventManager.CurrentEvent = currentEvent.event4;
     }
 
     public void ButtonFiveDo()
     {
-        Event currentEvent = eventManager.events.allEvents[eventManager.CurrentEventName];
-        eventManager.CurrentEventName = currentEvent.bFiveLinkedEvent;
+        Event currentEvent = eventManager.CurrentEvent;
+        eventManager.CurrentEvent = currentEvent.event5;
+    }
+
+    public void Continue()
+    {
+        eventManager.Continue();
+    }
+
+    private void EnableContinue()
+    {
+        continueButton.GetComponent<Image>().enabled = defaultButton;
+        continueButton.GetComponent<Button>().interactable = true;
+        continueButtonText.GetComponent<Text>().text = "Continue";
+    }
+
+    private void DisableContinue()
+    {
+        continueButton.GetComponent<Image>().enabled = false;
+        continueButton.GetComponent<Button>().interactable = false;
     }
 
     void TurnShitBackOn()
