@@ -141,7 +141,7 @@ public class EventManager : MonoBehaviour
                 case StatChange.addWisdom:
                     _wisdom++;
                     break;
-                case StatChange.addOptmism:
+                case StatChange.addOptimism:
                     _wisdom--;
                     break;
                 default:

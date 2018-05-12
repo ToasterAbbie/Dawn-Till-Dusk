@@ -7,7 +7,7 @@ public enum StatChange
     addFood,
     minusFood,
     addWisdom,
-    addOptmism
+    addOptimism
 }
 
 public class Event
