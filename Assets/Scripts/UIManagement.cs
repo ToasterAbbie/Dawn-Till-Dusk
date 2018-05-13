@@ -101,6 +101,8 @@ public class UIManagement : MonoBehaviour
             stat.GetComponent<Text>().text = " ";
         }
 
+        DisableContinue();
+
         continueButtonText.GetComponent<Text>().text = " ";
     }
 
@@ -177,7 +179,7 @@ public class UIManagement : MonoBehaviour
 
     public void Continue()
     {
-        eventManager.Continue();
+        eventManager.Continue(eventManager.CurrentEvent.continueIntruction);
     }
 
     private void EnableContinue()

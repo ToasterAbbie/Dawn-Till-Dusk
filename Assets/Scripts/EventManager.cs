@@ -10,6 +10,13 @@ public enum EventState
     Map
 }
 
+public enum ContinueInstruction
+{
+    GoToForestEncounter,
+    GoToPlainsEncounter,
+    GoToRiverEncounter
+}
+
 public class EventManager : MonoBehaviour 
 {
 
@@ -84,12 +91,12 @@ public class EventManager : MonoBehaviour
 
     void Start () 
 	{
-        _state = EventState.Encounter;
+        _state = EventState.Map;
         _food = 5;
         _wisdom = 0;
         currentInterval = 0;
-        events = GetComponent<EventLibrary> ();
-        CurrentEncounter = events.GetRandomEncounter();
+        events = GetComponent<EventLibrary>();
+        CurrentEncounter = events.Map;
 	}
 
 	void Update () 
@@ -97,31 +104,49 @@ public class EventManager : MonoBehaviour
 		
 	}
 
-    public void Continue()
+    public void Continue(ContinueInstruction? instruction)
     {
-        switch(State)
+        switch (instruction)
         {
-            case EventState.Encounter:
-                _state = EventState.HuntRestExplore;
-                CurrentEncounter = events.HuntRestExplore;
-                break;
-            case EventState.HuntRestExplore:
-                _state = EventState.Interval;
-                CurrentEncounter = events.intervals[currentInterval];
-                break;
-            case EventState.Interval:
+            case ContinueInstruction.GoToForestEncounter:
                 _state = EventState.Encounter;
-                currentInterval++;
-                CurrentEncounter = events.GetRandomEncounter();
-                //DO SOMETHING
+                CurrentEncounter = events.GetRandomEncounter(EncounterType.Forest);
                 break;
-            case EventState.Map:
-                //DO SOMETHING
+            case ContinueInstruction.GoToPlainsEncounter:
+                _state = EventState.Encounter;
+                CurrentEncounter = events.GetRandomEncounter(EncounterType.Plains);
+                break;
+            case ContinueInstruction.GoToRiverEncounter:
+                _state = EventState.Encounter;
+                CurrentEncounter = events.GetRandomEncounter(EncounterType.River);
                 break;
             default:
-                //DO SOMETHING
+                switch (State)
+                {
+                    case EventState.Encounter:
+                        _state = EventState.HuntRestExplore;
+                        CurrentEncounter = events.HuntRestExplore;
+                        break;
+                    case EventState.HuntRestExplore:
+                        _state = EventState.Interval;
+                        CurrentEncounter = events.intervals[currentInterval];
+                        break;
+                    case EventState.Interval:
+                        _state = EventState.Map;
+                        currentInterval++;
+                        CurrentEncounter = events.Map;
+                        break;
+                    case EventState.Map:
+                        _state = EventState.Encounter;
+                        CurrentEncounter = events.GetRandomEncounter();
+                        break;
+                    default:
+                        break;
+                }
                 break;
         }
+
+        
     }
     
     void UpdateStats()

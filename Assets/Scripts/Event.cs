@@ -16,6 +16,7 @@ public class Event
     public string description = " ";
     public string buttonText = " ";
     public StatChange[] statChange;
+    public ContinueInstruction? continueIntruction;
 
     public Event event1;
     public Event event2;
