@@ -73,26 +73,26 @@ public class EventLibrary : MonoBehaviour
                 events = new Event()
                 {
                     buttonText = "",
-                    description = "Choose the next place to go",
+                    description = "Where should the Humans go?",
                     image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
                     event1 = new Event()
                     {
                         buttonText = "Forest",
-                        description = "You chose the forest, click continue to begin.",
+                        description = "The Humans head into the Forest",
                         image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
                         continueIntruction = ContinueInstruction.GoToForestEncounter
                     },
                     event2 = new Event()
                     {
                         buttonText = "River",
-                        description = "You chose the river, click continue to begin.",
+                        description = "The Humans head to the River",
                         image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
                         continueIntruction = ContinueInstruction.GoToRiverEncounter
                     },
                     event3 = new Event()
                     {
                         buttonText = "Plains",
-                        description = "You chose the plains, click continue to begin.",
+                        description = "The Humans head to the Plains",
                         image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
                         continueIntruction = ContinueInstruction.GoToPlainsEncounter
                     }
@@ -555,40 +555,33 @@ public class EventLibrary : MonoBehaviour
                         event2 = new Event()
                         {
                             buttonText = "Hunter",
-                            description = "The Hunter sources the nearest stick and flings it far into the forest. The Dire wolf runs away, never to return. (+optimism)",
+                            description = "The Hunter builds a 5-storey mansion out of the sticks, pool and gym included. He leases it to a squirrel for a handful of nuts. (+food +wisdom)",
                             image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
-                            statChange = new StatChange[] { StatChange.addOptimism }
+                            statChange = new StatChange[] { StatChange.addFood, StatChange.addWisdom }
                         },
                         event3 = new Event()
                         {
                             buttonText = "Child",
-                            description = "The Child approaches the wolf “Chris Pratt Jurassic World” style. Turns out the wolf is a good boy. Many tummy rubs ensue. (++optimism)",
+                            description = "The Child crafts a wooden pickaxe from the sticks and begins mining for diamonds. (+wisdom)",
                             image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
-                            statChange = new StatChange[] { StatChange.addOptimism, StatChange.addOptimism }
+                            statChange = new StatChange[] { StatChange.addWisdom }
                         },
                         event4 = new Event()
                         {
                             buttonText = "Dog",
-                            description = "The Dog, sensing the similarities between the two animals, befriends the wolf, who, pleased to have a new buddy, leads the Dog to a secret stash of meat.  (+food +optimism)",
+                            description = "The Dog has a great time playing with the sticks. (+optimism)",
                             image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
-                            statChange = new StatChange[] { StatChange.addFood, StatChange.addOptimism }
+                            statChange = new StatChange[] { StatChange.addOptimism }
                         },
                         event5 = new Event()
                         {
                             buttonText = "Shaman",
-                            description = "The Shaman is more of a cat person, and the wolf knows it. The group runs away. (+wisdom)",
-                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
-                            statChange = new StatChange[] { StatChange.addWisdom }
+                            description = "The Shaman makes a series of creepy voodoo people. She swears she isn’t a witch.",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive")
                         }
                     },
-                    event2 = new Event()
-                    {
-                        buttonText = "Flee",
-                        description = "Not knowing what the Dire wolf is or what bizarre universe it originated from, the group decide to leave it well enough alone. (+wisdom)",
-                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
-                        statChange = new StatChange[] { StatChange.addWisdom }
-                    }
                 }
+                    
             });
 
             forestEncounters.Add(new Encounter()
@@ -854,6 +847,587 @@ public class EventLibrary : MonoBehaviour
             #endregion
 
             #region Plains
+
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "All of a sudden, the Dog darts off over a hill.",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Follow the Dog",
+                        description = "The Dog leads the group to a peep of chickens. Nuggets for everyone! (++food + wisdom)",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        statChange = new StatChange[] { StatChange.addFood, StatChange.addFood, StatChange.addWisdom }
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Call the Dog back",
+                        description = "The Dog returns, somewhat sheepishly, with a dead chicken in its mouth. There is an adequate quantity of nuggets to share between the group. (+food +optimism)",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        statChange = new StatChange[] { StatChange.addFood, StatChange.addOptimism }
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "The group spot some snakes on the plains!",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Get the reference",
+                        description = "The Leader yells “I’ve had it with these motherheckin’ snakes on these motherheckin’ planes!” (+optimism)",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        statChange = new StatChange[] { StatChange.addOptimism }
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Don't get the reference",
+                        description = "Don't get the reference",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child screams and runs. The group follows.",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "Snakes. It had to be snakes. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom }
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman pulls out her Black Mambarine and attempts to charm the snakes. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom }
+                        }
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "The group wade through a patch of tall grass. They encounter a pigeon! ",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Attack!",
+                        description = "Attack!",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The Leader is confused! He hurts himself in his confusion!",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive")
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter uses spear! It’s super effective! (+food +wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addFood, StatChange.addWisdom },
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child catches the pigeon! There is no room in your party. Pigeon is sent to your PC. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event4 = new Event()
+                        {
+                            buttonText = "Dog",
+                            description = "The Dog uses Bark! The pigeon flees. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event5 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "What? Shaman is evolving… Congratulations! Shaman evolved into Shamander! (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Flee",
+                        description = "The group flee from the ferocious bird. They get away safely. (+wisdom)",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        statChange = new StatChange[] { StatChange.addWisdom },
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "As the group progress, they spot an oddly shaped rock on the plains that doesn’t resemble any other they have encountered on this planet. They approach, and find it to resemble the meteor they emerged from, split in half.",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Investigate the meteor",
+                        description = "Investigate the meteor",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The Leader searches inside the meteor. He finds a note written in a strange script that he doesn’t understand. What could it mean… (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter searches the surrounding area and comes across a set of footprints. They seem to lead towards Big Pointy Rock… (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child climbs inside the meteor to search its interior. He finds a small toy seems suitable for a child his age. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event4 = new Event()
+                        {
+                            buttonText = "Dog",
+                            description = "The Dog begins barking frantically, almost as though he’s trying to explain something to the group. Alas, they do not speak Dog, and cannot understand him. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Pray to the meteor",
+                        description = "The Shaman drops to her knees and says a prayer to every god she believes in, desperately trying to glean meaning from the meteor. The Dog barks at her. (+optimism)",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        statChange = new StatChange[] { StatChange.addOptimism },
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "As he walks, the Child carelessly trips over a rock on the ground. He collapses and subsequently bursts into tears. ",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Comfort the Child",
+                        description = "Comfort the Child",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "On his way to cheer up the Child, the Leader falls over the same rock. He faceplants the grass. The Child is amused. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter pats the Child on the head with one of his big, strong hands. This helps a lot. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Dog",
+                            description = "The Dog licks away the Child’s tears. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event4 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman bends down and gives the Child a cuddle. There is nothing better than a cuddle from your mum. (++optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism, StatChange.addOptimism },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Ignore the Child",
+                        description = "Through his relentless and heaving sobs, the Child realises that no one is going to help him. He learns a valuable lesson, realising he needs to be self-sufficient to survive this cruel, cruel world, that there is no one he can rely on to be there in his darkest hour – not even his own family. From now on, he knows that the only sure thing in his life is himself, and that he must work hard every day to be independent and brave, for there are none out there who will hold his hand through his hardships. He clenches his jaw and balls his fists, rising to his feet with barely a wobble, despite the graze on his knee. He wipes salty tears from his cheeks. He is a man now. (+wisdom)",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        statChange = new StatChange[] { StatChange.addWisdom },
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "The Dog finds a stick in the grass. Wagging his tail, he bounds to the group and drops it at their feet, looking up at them expectantly.",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Play fetch with the Dog",
+                        description = "Play fetch with the Dog",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter picks up the stick and hurls it so far into the distance that the Dog decides he doesn’t want to play anymore. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "While the Child lacks significant upper-body strength and therefore can’t throw the stick particularly far, they both have a really great time. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman launches the stick over the closest hill. The Dog returns with a rabbit. (+food +wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addFood, StatChange.addWisdom },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Ignore the Dog",
+                        description = "The Leader is far too “busy” for trifle games such as fetch. The Dog shall have to play by himself. (+wisdom)",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        statChange = new StatChange[] { StatChange.addWisdom },
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "A wonderfully round, reasonably large hill stands before them. ",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Roll down the hill",
+                        description = "Roll down the hill",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child rolls down the hill and has a great time! (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The Leader trips over his own feet and plummets head-over-heels down the hill. The Child finds this hill-arious. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Dog",
+                            description = "The Dog rolls down the hill, and is completely green when he reaches the bottom. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addFood, StatChange.addWisdom },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Walk over the hill",
+                        description = "Walk over the hill",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Shaman warns the group that they will have to wash the grass stains from their clothes themselves if they make the decision to roll down the hill. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter thinks he spies a blue hedgehog in the green hills… (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "A lone apple tree stands in the middle of the plains.",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Eat an apple",
+                        description = "Eat an apple",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The Leader plucks an apple from its branch and takes a bite. Suddenly his mind is flooded with knowledge of the Goddess of the Dawn and the God of the Dusk. He keeps this knowledge to himself. (++wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom, StatChange.addWisdom },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter is more of an Android guy.",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child isn’t tall enough to reach any of the apples.",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        },
+                        event4 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman plucks an apple from its branch and takes a bite. Suddenly her mind is flooded with knowledge of the Goddess of the Dawn and the God of the Dusk. She shares this knowledge with the group. (++optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism, StatChange.addOptimism },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Leave the tree alone",
+                        description = "The Dog growls at anyone that tries to go near the tree.",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "A wild, majestic horse is spotted among the grass.",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Ride the horse",
+                        description = "Ride the horse",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The group watch as the Leader fails to even mount the horse. Awkward!",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter majestically leaps into the horse’s back and gallops off into the sunset, unaware of what a sunset it or how it works. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Shaman lifts the Child onto the horse and together, horse and Child complete a round of dressage. It’s a 10 from me. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Kill the horse",
+                        description = "The group watch in awe and terror as the Shaman mercilessly kills the horse, turns it into burgers and sells it to Tesco. (+food +wisdom)",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        statChange = new StatChange[] { StatChange.addFood, StatChange.addWisdom },
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "The group encounter a patch of brightly coloured wild flowers grown amongst blades of grass.",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Pick the flowers",
+                        description = "Pick the flowers",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman picks the flowers and uses them in a peculiar potion. It does absolutely nothing, but she has a good time making it. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child gives a bunch of flowers to the Shaman as a gift. There is good in this world! (++optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism, StatChange.addOptimism },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Smell the flowers",
+                        description = "Smell the flowers",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The Leader sniffs the patch of flowers and immediately starts sneezing. Congratulations! You have discovered hay fever! (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter takes a long, deep inhale through the nostrils to smell the sweetest smell ever smelt. He picks the flowers and makes his own perfume called The Oldest Spice. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism, StatChange.addOptimism },
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Dog",
+                            description = "The group watch as the Dog walks over to sniff the flowers. He eats them instead. (+food +wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addFood, StatChange.addWisdom },
+                        },
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "Oh, look! A chicken!",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Pluck a feather from the chicken",
+                        description = "Pluck a feather from the chicken",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman plucks a feather from the chicken’s back and uses it in conjunction with a conveniently present bottle of ink to write something down. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child uses a feather to tickle the Dog. The Dog is unamused, but the Child is. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Collect one of the chicken's eggs",
+                        description = "Collect one of the chicken's eggs",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The Leader attempts to cook up some scrambled eggs on a rock baking in the sun. Gordon Ramsay would have some words to say about it. (+food +wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addFood, StatChange.addWisdom },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter leans in close to the eggs and notices one of them is decorated with bright, coloured patterns. One might call it an Easter egg… (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism },
+                        },
+                    }
+                }
+            });
+
+            plainsEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "The humans hear an odd sound that could be described onomatopoeically as a “moo” coming from over the next hill. They investigate to discover a cow.",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Milk the cow",
+                        description = "Milk the cow",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The cow is clearly not comfortable with this. (+food +wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addFood, StatChange.addWisdom },
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman milks the cow and produces a refreshing pint of milk. If only cookies had been invented! (+food +optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addFood, StatChange.addOptimism },
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Collect one of the chicken's eggs",
+                        description = "Collect one of the chicken's eggs",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter takes down the cow with his spear and whips up some tasty burgers. The group are lovin’ it. (+food +optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addFood, StatChange.addOptimism },
+                        },
+                    }
+                }
+            });
 
             #endregion
 
@@ -1378,6 +1952,181 @@ public class EventLibrary : MonoBehaviour
                     }
                 }
             });
+
+            riverEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "The river drops away into a roaring waterfall. ",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Dive down the waterfall",
+                        description = "Dive down the waterfall",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter completes at least 5 somersaults in the air before cutting into the water with barely a ripple. It’s a 10 from me. (++optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism, StatChange.addOptimism }
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The Leader slips on a wet stone and ends up belly flopping onto the surface of the water. That’s gonna hurt tomorrow. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom }
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Dog",
+                            description = "The Dog takes a joyful and majestic leap off the top and splashes into the water below. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism }
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Climb down the waterfall",
+                        description = "Climb down the waterfall",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman asserts that diving off the waterfall is too dangerous and scales down the side instead. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom }
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child finds a slippery slope to slide down to safety. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism }
+                        },
+                    }
+                }
+            });
+
+            riverEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "As they near the water’s edge, the group notice five faces staring back at them from the surface. It’s their reflections!",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Stare at reflection",
+                        description = "Stare at reflection",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter stares deeply into the eyes of his reflection. He has finally found someone he can connect with. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism }
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman thinks she is lookin’ hella fine. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism }
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The Leader stares into the water. He starts feeling self-conscious about his weight. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom }
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Splash!",
+                        description = "Splash!",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child and the Dog are both confused as to who exactly it is that is staring back at them. They attack them ferociously only to discover it’s just water. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom }
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Dog",
+                            description = "The Child and the Dog are both confused as to who exactly it is that is staring back at them. They attack them ferociously only to discover it’s just water. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom }
+                        },
+                    }
+                }
+            });
+
+            riverEncounters.Add(new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "The group find a nice collection of smooth stones by the waters edge, perfect for skimming the water with.",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    statChange = new StatChange[] { StatChange.minusFood },
+                    event1 = new Event()
+                    {
+                        buttonText = "Skim the stones",
+                        description = "Skim the stones",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Hunter",
+                            description = "The Hunter throws the rock with such astonishing elegance that the stone bounces downstream and completely out of sight. (++optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism, StatChange.addOptimism }
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Shaman",
+                            description = "The Shaman gets a good few bounces with the stone before it plops into the water and sinks to the river floor. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism }
+                        },
+                    },
+                    event2 = new Event()
+                    {
+                        buttonText = "Splash!",
+                        description = "Splash!",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Leader",
+                            description = "The Leader’s stone bounces a total of one time before it sinks. He discovers that he is not a natural at this. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom }
+                        },
+                        event2 = new Event()
+                        {
+                            buttonText = "Child",
+                            description = "The Child lobs a stone into the river, and before it even has the chance to bounce, the Dog leaps in after it. (+optimism)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addOptimism }
+                        },
+                        event3 = new Event()
+                        {
+                            buttonText = "Dog",
+                            description = "Dogs don’t do throwing. Only catching. (+wisdom)",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            statChange = new StatChange[] { StatChange.addWisdom }
+                        },
+                    }
+                }
+            });
+
 
             #endregion
 

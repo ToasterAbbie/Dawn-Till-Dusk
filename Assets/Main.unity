@@ -289,8 +289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.14}
   m_AnchorMax: {x: 0.5, y: 0.14}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 799.6, y: 30}
+  m_AnchoredPosition: {x: -0.097895, y: 0}
+  m_SizeDelta: {x: 799.8, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &423658641
 MonoBehaviour:
@@ -559,8 +559,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.2}
   m_AnchorMax: {x: 0.5, y: 0.2}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 799.6, y: 30}
+  m_AnchoredPosition: {x: -0.00039673003, y: 0}
+  m_SizeDelta: {x: 799.59, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &845890317
 MonoBehaviour:
@@ -681,7 +681,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.078}
   m_AnchorMax: {x: 0.5, y: 0.078}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 799.6, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &976947910
@@ -1046,8 +1046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.25800002}
   m_AnchorMax: {x: 0.5, y: 0.25800002}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 799.6, y: 30}
+  m_AnchoredPosition: {x: 0.10501, y: 0.99998474}
+  m_SizeDelta: {x: 799.79, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1100945394
 MonoBehaviour:
@@ -1364,8 +1364,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.316}
   m_AnchorMax: {x: 0.5, y: 0.316}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 799.6, y: 30}
+  m_AnchoredPosition: {x: -0.10291, y: 2}
+  m_SizeDelta: {x: 799.79, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1499964629
 MonoBehaviour:
@@ -1384,7 +1384,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
