@@ -131,7 +131,7 @@ public class UIManagement : MonoBehaviour
             }
         }
 
-        if (currentEvent.isLastEventInEncounter())
+        if (currentEvent.IsLastEventInEncounter())
         {
             EnableContinue();
         }
@@ -149,32 +149,38 @@ public class UIManagement : MonoBehaviour
 
     public void ButtonOneDo()
     {
-        Event currentEvent = eventManager.CurrentEvent;
-        eventManager.CurrentEvent = currentEvent.event1;
+        SetNextEvent(eventManager.CurrentEvent.event1);
     }
 
     public void ButtonTwoDo()
     {
-        Event currentEvent = eventManager.CurrentEvent;
-        eventManager.CurrentEvent = currentEvent.event2;
+        SetNextEvent(eventManager.CurrentEvent.event2); ;
     }
 
     public void ButtonThreeDo()
     {
-        Event currentEvent = eventManager.CurrentEvent;
-        eventManager.CurrentEvent = currentEvent.event3;
+        SetNextEvent(eventManager.CurrentEvent.event3);
     }
 
     public void ButtonFourDo()
     {
-        Event currentEvent = eventManager.CurrentEvent;
-        eventManager.CurrentEvent = currentEvent.event4;
+        SetNextEvent(eventManager.CurrentEvent.event4);
     }
 
     public void ButtonFiveDo()
     {
-        Event currentEvent = eventManager.CurrentEvent;
-        eventManager.CurrentEvent = currentEvent.event5;
+        SetNextEvent(eventManager.CurrentEvent.event5);
+    }
+
+    private void SetNextEvent(Event nextEvent)
+    {
+        Event oldEvent = eventManager.CurrentEvent;
+        eventManager.CurrentEvent = nextEvent;
+
+        if (oldEvent.isContinueScreen)
+        {
+            Continue();
+        }
     }
 
     public void Continue()
@@ -186,7 +192,19 @@ public class UIManagement : MonoBehaviour
     {
         continueButton.GetComponent<Image>().enabled = defaultButton;
         continueButton.GetComponent<Button>().interactable = true;
-        continueButtonText.GetComponent<Text>().text = "Continue";
+        continueButtonText.GetComponent<Text>().text = GetContinueText();
+    }
+
+    private string GetContinueText()
+    {
+        if (string.IsNullOrEmpty(eventManager.CurrentEvent.continueText))
+        {
+            return "Continue";
+        }
+        else
+        {
+            return eventManager.CurrentEvent.continueText;
+        }
     }
 
     private void DisableContinue()

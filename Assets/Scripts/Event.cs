@@ -17,6 +17,7 @@ public class Event
     public string buttonText = " ";
     public StatChange[] statChange;
     public ContinueInstruction? continueIntruction;
+    public string continueText = string.Empty;
 
     public Event event1;
     public Event event2;
@@ -24,7 +25,9 @@ public class Event
     public Event event4;
     public Event event5;
 
-    public bool isLastEventInEncounter()
+    public bool isContinueScreen = false;
+
+    public bool IsLastEventInEncounter()
     {
         if (event1 == null &&
             event2 == null &&

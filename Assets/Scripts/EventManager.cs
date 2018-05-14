@@ -4,17 +4,20 @@ using UnityEngine;
 
 public enum EventState
 {
+    Prologue,
     Encounter,
     HuntRestExplore,
     Interval,
-    Map
+    Map,
+    Ending
 }
 
 public enum ContinueInstruction
 {
     GoToForestEncounter,
     GoToPlainsEncounter,
-    GoToRiverEncounter
+    GoToRiverEncounter,
+    Restart
 }
 
 public class EventManager : MonoBehaviour 
@@ -35,6 +38,7 @@ public class EventManager : MonoBehaviour
     }
 
     private Encounter _currentEncounter;
+
     public Encounter CurrentEncounter
     {
         get
@@ -44,16 +48,12 @@ public class EventManager : MonoBehaviour
         set
         {
             //TODO: Something needs to happen here to remove encounters already done. Not sure why this isn't working right now but cba to fix it at the moment.
-
-            Encounter lastEvent = _currentEncounter;
-
+            events.RemoveEncounter(_currentEncounter);
             _currentEncounter = value;
             CurrentEvent = _currentEncounter.events;
-
-            events.allEncounters.Remove(lastEvent);
         }
     }
-    
+
     private Event _currentEvent;
 
     public Event CurrentEvent
@@ -91,18 +91,50 @@ public class EventManager : MonoBehaviour
 
     void Start () 
 	{
-        _state = EventState.Map;
+        _state = EventState.Prologue;
         _food = 5;
         _wisdom = 0;
         currentInterval = 0;
         events = GetComponent<EventLibrary>();
-        CurrentEncounter = events.Map;
+        CurrentEncounter = events.Prologue;
 	}
 
 	void Update () 
 	{
-		
-	}
+		if (_food < 0)
+        {
+            _state = EventState.Ending;
+            CurrentEncounter = events.MinFood;
+        }
+        else if (_wisdom <= -5)
+        {
+            _state = EventState.Ending;
+            CurrentEncounter = events.MaxOptimism;
+        }
+        else if (_wisdom >= 5)
+        {
+            _state = EventState.Ending;
+            CurrentEncounter = events.MaxWisdom;
+        }
+        else if (currentInterval >= 9)
+        {
+            if (_wisdom > 0)
+            {
+                _state = EventState.Ending;
+                CurrentEncounter = events.Wisdom;
+            }
+            else if (_wisdom < 0)
+            {
+                _state = EventState.Ending;
+                CurrentEncounter = events.Optimism;
+            }
+            else if (_wisdom == 0)
+            {
+                _state = EventState.Ending;
+                CurrentEncounter = events.Balanced;
+            }
+        }
+    }
 
     public void Continue(ContinueInstruction? instruction)
     {
@@ -120,9 +152,17 @@ public class EventManager : MonoBehaviour
                 _state = EventState.Encounter;
                 CurrentEncounter = events.GetRandomEncounter(EncounterType.River);
                 break;
+            case ContinueInstruction.Restart:
+                _state = EventState.Prologue;
+                CurrentEncounter = events.Prologue;
+                break;
             default:
                 switch (State)
                 {
+                    case EventState.Prologue:
+                        _state = EventState.Map;
+                        CurrentEncounter = events.Map;
+                        break;
                     case EventState.Encounter:
                         _state = EventState.HuntRestExplore;
                         CurrentEncounter = events.HuntRestExplore;
@@ -140,6 +180,10 @@ public class EventManager : MonoBehaviour
                         _state = EventState.Encounter;
                         CurrentEncounter = events.GetRandomEncounter();
                         break;
+                    case EventState.Ending:
+                        _state = EventState.Prologue;
+                        CurrentEncounter = events.Prologue;
+                        break;
                     default:
                         break;
                 }
@@ -153,27 +197,30 @@ public class EventManager : MonoBehaviour
     {
         StatChange[] changes = CurrentEvent.statChange;
 
-        foreach (StatChange change in changes)
+        if (changes != null && changes.Length > 0)
         {
-            switch (change)
+            foreach (StatChange change in changes)
             {
-                case StatChange.addFood:
-                    _food++;
-                    break;
-                case StatChange.minusFood:
-                    _food--;
-                    break;
-                case StatChange.addWisdom:
-                    _wisdom++;
-                    break;
-                case StatChange.addOptimism:
-                    _wisdom--;
-                    break;
-                default:
-                    break;
+                switch (change)
+                {
+                    case StatChange.addFood:
+                        _food++;
+                        break;
+                    case StatChange.minusFood:
+                        _food--;
+                        break;
+                    case StatChange.addWisdom:
+                        _wisdom++;
+                        break;
+                    case StatChange.addOptimism:
+                        _wisdom--;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
-
+        
         RunCaps();
     }
 

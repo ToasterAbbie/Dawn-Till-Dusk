@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum EncounterType
@@ -14,8 +15,7 @@ public class EventLibrary : MonoBehaviour
 {
 
     public Dictionary<string, Event> allEvents;
-    public List<Encounter> allEncounters;
-
+    
     public List<Encounter> forestEncounters;
     public List<Encounter> plainsEncounters;
     public List<Encounter> riverEncounters;
@@ -23,8 +23,15 @@ public class EventLibrary : MonoBehaviour
     public List<Encounter> intervals;
 
     public Encounter HuntRestExplore;
-
     public Encounter Map;
+    public Encounter Prologue;
+
+    public Encounter MinFood;
+    public Encounter MaxWisdom;
+    public Encounter MaxOptimism;
+    public Encounter Wisdom;
+    public Encounter Optimism;
+    public Encounter Balanced;
 
     private bool initialized = false;
 
@@ -47,11 +54,32 @@ public class EventLibrary : MonoBehaviour
                 encounter = rnd.Next(0, riverEncounters.Count);
                 return riverEncounters[encounter];
             default:
-                encounter = rnd.Next(0, allEncounters.Count);
-                return allEncounters[encounter];
+                encounter = rnd.Next(0, AllEncounters().Count);
+                return AllEncounters()[encounter];
         }
         
         
+    }
+
+    public void RemoveEncounter(Encounter encounter)
+    {
+        if (forestEncounters.Contains(encounter))
+        {
+            forestEncounters.Remove(encounter);
+        }
+        if (plainsEncounters.Contains(encounter))
+        {
+            plainsEncounters.Remove(encounter);
+        }
+        if (riverEncounters.Contains(encounter))
+        {
+            riverEncounters.Remove(encounter);
+        }
+    }
+
+    private List<Encounter> AllEncounters()
+    {
+        return forestEncounters.Concat(plainsEncounters).Concat(riverEncounters).ToList();
     }
 
     private void TryInitialize()
@@ -60,11 +88,49 @@ public class EventLibrary : MonoBehaviour
         {
             initialized = true;
             allEvents = new Dictionary<string, Event>();
-            allEncounters = new List<Encounter>();
             forestEncounters = new List<Encounter>();
             plainsEncounters = new List<Encounter>();
             riverEncounters = new List<Encounter>();
             intervals = new List<Encounter>();
+            
+            #region Prologue
+
+            Prologue = new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "Would you like to play the damn game mmk?",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    event1 = new Event()
+                    {
+                        buttonText = "Start",
+                        description = "Prologue 1",
+                        image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Continue",
+                            description = "Prologue 2",
+                            image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                            event1 = new Event()
+                            {
+                                buttonText = "Continue",
+                                description = "Prologue 3",
+                                image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                                event1 = new Event()
+                                {
+                                    buttonText = "Continue",
+                                    description = "Prologue 4",
+                                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                                    continueText = "Begin!"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            #endregion
 
             #region Map
 
@@ -75,6 +141,7 @@ public class EventLibrary : MonoBehaviour
                     buttonText = "",
                     description = "Where should the Humans go?",
                     image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    isContinueScreen = true,
                     event1 = new Event()
                     {
                         buttonText = "Forest",
@@ -2132,6 +2199,82 @@ public class EventLibrary : MonoBehaviour
 
             #endregion
 
+            #region Endings
+
+            string endingPhrase = "Play again";
+            MinFood = new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "You died of food",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    continueIntruction = ContinueInstruction.Restart,
+                    continueText = endingPhrase
+                }
+            };
+
+            MaxWisdom = new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "You died of too much Wisdom",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    continueIntruction = ContinueInstruction.Restart,
+                    continueText = endingPhrase
+                }
+            };
+
+            MaxOptimism = new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "You died of too much Optmism",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    continueIntruction = ContinueInstruction.Restart,
+                    continueText = endingPhrase
+                }
+            };
+
+            Optimism = new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "You died of Optimism",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    continueIntruction = ContinueInstruction.Restart,
+                    continueText = endingPhrase
+                }
+            };
+
+            Wisdom = new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "You died of Widsom",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    continueIntruction = ContinueInstruction.Restart,
+                    continueText = endingPhrase
+                }
+            };
+
+            Balanced = new Encounter()
+            {
+                events = new Event()
+                {
+                    buttonText = "",
+                    description = "You died of Nothing",
+                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    continueIntruction = ContinueInstruction.Restart,
+                    continueText = endingPhrase
+                }
+            };
+
+            #endregion
         }
     }
 
