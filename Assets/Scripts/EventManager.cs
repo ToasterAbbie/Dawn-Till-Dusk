@@ -91,13 +91,18 @@ public class EventManager : MonoBehaviour
 
     void Start () 
 	{
+        Setup();
+	}
+
+    void Setup()
+    {
         _state = EventState.Prologue;
         _food = 5;
         _wisdom = 0;
         currentInterval = 0;
         events = GetComponent<EventLibrary>();
         CurrentEncounter = events.Prologue;
-	}
+    }
 
 	void Update () 
 	{
@@ -135,7 +140,7 @@ public class EventManager : MonoBehaviour
             }
         }
     }
-
+    
     public void Continue(ContinueInstruction? instruction)
     {
         switch (instruction)
@@ -153,8 +158,7 @@ public class EventManager : MonoBehaviour
                 CurrentEncounter = events.GetRandomEncounter(EncounterType.River);
                 break;
             case ContinueInstruction.Restart:
-                _state = EventState.Prologue;
-                CurrentEncounter = events.Prologue;
+                Setup();
                 break;
             default:
                 switch (State)
@@ -181,8 +185,7 @@ public class EventManager : MonoBehaviour
                         CurrentEncounter = events.GetRandomEncounter();
                         break;
                     case EventState.Ending:
-                        _state = EventState.Prologue;
-                        CurrentEncounter = events.Prologue;
+                        Setup();
                         break;
                     default:
                         break;

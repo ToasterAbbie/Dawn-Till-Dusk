@@ -20,18 +20,20 @@ public class UIManagement : MonoBehaviour
                         button3Text,
                         button4Text,
                         button5Text,
-                        foodLevel,
-                        wisdomLevel,
+                        foodLevelIcon,
+                        pointer,
                         continueButton,
                         continueButtonText;
 
-    private GameObject[] buttonTexts, buttons, statTexts;
+    private GameObject[] buttonTexts, buttons;
 
     public Sprite defaultButton;
 
     void Start()
     {
         image = GameObject.Find("EventImage");
+        foodLevelIcon = GameObject.Find("FoodLevelIcon");
+        pointer = GameObject.Find("Pointer");
         description = GameObject.Find("EventDescription");
 
         buttonOne = GameObject.Find("EventOptOne");
@@ -45,10 +47,7 @@ public class UIManagement : MonoBehaviour
         button3Text = GameObject.Find("EventTextThree");
         button4Text = GameObject.Find("EventTextFour");
         button5Text = GameObject.Find("EventTextFive");
-
-        foodLevel = GameObject.Find("FoodLevel");
-        wisdomLevel = GameObject.Find("WisdomLevel");
-
+        
         continueButton = GameObject.Find("Continue");
         continueButtonText = GameObject.Find("ContinueText");
 
@@ -72,12 +71,6 @@ public class UIManagement : MonoBehaviour
             button5Text
         };
 
-        statTexts = new GameObject[]
-        {
-            foodLevel,
-            wisdomLevel
-        };
-
         eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
     }
 
@@ -95,12 +88,7 @@ public class UIManagement : MonoBehaviour
         {
             button.GetComponent<Text>().text = " ";
         }
-
-        foreach (GameObject stat in statTexts)
-        {
-            stat.GetComponent<Text>().text = " ";
-        }
-
+        
         DisableContinue();
 
         continueButtonText.GetComponent<Text>().text = " ";
@@ -111,6 +99,8 @@ public class UIManagement : MonoBehaviour
         ResetTexts();
         Event currentEvent = eventManager.CurrentEvent;
         image.GetComponent<Image>().sprite = currentEvent.image;
+        UpdateFoodIcon();
+        UpdateSlider();
         description.GetComponent<Text>().text = currentEvent.description;
 
         button1Text.GetComponent<Text>().text = getButtonText(currentEvent.event1);
@@ -118,10 +108,7 @@ public class UIManagement : MonoBehaviour
         button3Text.GetComponent<Text>().text = getButtonText(currentEvent.event3);
         button4Text.GetComponent<Text>().text = getButtonText(currentEvent.event4);
         button5Text.GetComponent<Text>().text = getButtonText(currentEvent.event5);
-
-        foodLevel.GetComponent<Text>().text = eventManager.Food.ToString();
-        wisdomLevel.GetComponent<Text>().text = eventManager.Wisdom.ToString();
-
+        
         for (int i = 0; i < buttonTexts.Length; i++)
         {
             if (buttonTexts[i].GetComponent<Text>().text == " ")
@@ -135,6 +122,31 @@ public class UIManagement : MonoBehaviour
         {
             EnableContinue();
         }
+    }
+
+    private void UpdateFoodIcon()
+    {
+        foodLevelIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("EventImages/FoodIcons/Hunger" + eventManager.Food.ToString());
+    }
+
+    private void UpdateSlider()
+    {
+        pointer.GetComponent<RectTransform>().position = new Vector3(eventManager.Wisdom * GetPointerMultiplier(), pointer.GetComponent<RectTransform>().position.y, pointer.GetComponent<RectTransform>().position.z);
+    }
+
+    private float GetPointerMultiplier()
+    {
+        float max = 2.35f;
+        float min = -2.35f;
+
+        float maxWisdom = 5;
+        float minWisdom = -5;
+
+        float resultWidth = max - min;
+        float valueWidth = maxWisdom - minWisdom;
+
+        float multiplier = resultWidth / valueWidth;
+        return multiplier;
     }
 
     private string getButtonText(Event eventToCheck)
