@@ -2263,7 +2263,7 @@ public class EventLibrary : MonoBehaviour
                 {
                     buttonText = "",
                     description = "The humans run out of food. They starve to death.",
-                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    image = Resources.Load<Sprite>("EventImages/Death"),
                     continueIntruction = ContinueInstruction.Restart,
                     continueText = endingPhrase
                 }
@@ -2275,7 +2275,7 @@ public class EventLibrary : MonoBehaviour
                 {
                     buttonText = "",
                     description = "The humans know too much. There is no point in living anymore. They lay down and die.",
-                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    image = Resources.Load<Sprite>("EventImages/Death"),
                     continueIntruction = ContinueInstruction.Restart,
                     continueText = endingPhrase
                 }
@@ -2287,7 +2287,7 @@ public class EventLibrary : MonoBehaviour
                 {
                     buttonText = "",
                     description = "The humans become so optimistic about their circumstances that they border on recklessness. No clue where they’re going, but positive they will get somewhere eventually, they take a wrong turn and are never seen again.",
-                    image = Resources.Load<Sprite>("EventImages/BeeHive/beehive"),
+                    image = Resources.Load<Sprite>("EventImages/Death"),
                     continueIntruction = ContinueInstruction.Restart,
                     continueText = endingPhrase
                 }

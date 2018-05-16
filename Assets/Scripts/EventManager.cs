@@ -47,7 +47,6 @@ public class EventManager : MonoBehaviour
         }
         set
         {
-            //TODO: Something needs to happen here to remove encounters already done. Not sure why this isn't working right now but cba to fix it at the moment.
             events.RemoveEncounter(_currentEncounter);
             _currentEncounter = value;
             CurrentEvent = _currentEncounter.events;

@@ -136,8 +136,8 @@ public class UIManagement : MonoBehaviour
 
     private float GetPointerMultiplier()
     {
-        float max = 2.35f;
-        float min = -2.35f;
+        float max = 2.2f;
+        float min = -2.2f;
 
         float maxWisdom = 5;
         float minWisdom = -5;
