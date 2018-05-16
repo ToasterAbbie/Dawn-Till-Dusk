@@ -96,7 +96,7 @@ public class EventManager : MonoBehaviour
     void Setup()
     {
         _state = EventState.Prologue;
-        _food = 5;
+        _food = 0;
         _wisdom = 0;
         currentInterval = 0;
         events = GetComponent<EventLibrary>();
@@ -105,37 +105,40 @@ public class EventManager : MonoBehaviour
 
 	void Update () 
 	{
-		if (_food < 0)
+        if (_state != EventState.Ending)
         {
-            _state = EventState.Ending;
-            CurrentEncounter = events.MinFood;
-        }
-        else if (_wisdom <= -5)
-        {
-            _state = EventState.Ending;
-            CurrentEncounter = events.MaxOptimism;
-        }
-        else if (_wisdom >= 5)
-        {
-            _state = EventState.Ending;
-            CurrentEncounter = events.MaxWisdom;
-        }
-        else if (currentInterval >= 9)
-        {
-            if (_wisdom > 0)
+            if (_food < 0)
             {
                 _state = EventState.Ending;
-                CurrentEncounter = events.Wisdom;
+                CurrentEncounter = events.MinFood;
             }
-            else if (_wisdom < 0)
+            else if (_wisdom <= -5)
             {
                 _state = EventState.Ending;
-                CurrentEncounter = events.Optimism;
+                CurrentEncounter = events.MaxOptimism;
             }
-            else if (_wisdom == 0)
+            else if (_wisdom >= 5)
             {
                 _state = EventState.Ending;
-                CurrentEncounter = events.Balanced;
+                CurrentEncounter = events.MaxWisdom;
+            }
+            else if (currentInterval >= 9)
+            {
+                if (_wisdom > 0)
+                {
+                    _state = EventState.Ending;
+                    CurrentEncounter = events.Wisdom;
+                }
+                else if (_wisdom < 0)
+                {
+                    _state = EventState.Ending;
+                    CurrentEncounter = events.Optimism;
+                }
+                else if (_wisdom == 0)
+                {
+                    _state = EventState.Ending;
+                    CurrentEncounter = events.Balanced;
+                }
             }
         }
     }
