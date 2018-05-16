@@ -96,7 +96,7 @@ public class EventManager : MonoBehaviour
     void Setup()
     {
         _state = EventState.Prologue;
-        _food = 0;
+        _food = 5;
         _wisdom = 0;
         currentInterval = 0;
         events = GetComponent<EventLibrary>();

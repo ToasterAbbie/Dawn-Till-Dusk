@@ -166,7 +166,7 @@ public class UIManagement : MonoBehaviour
 
     public void ButtonTwoDo()
     {
-        SetNextEvent(eventManager.CurrentEvent.event2); ;
+        SetNextEvent(eventManager.CurrentEvent.event2);
     }
 
     public void ButtonThreeDo()

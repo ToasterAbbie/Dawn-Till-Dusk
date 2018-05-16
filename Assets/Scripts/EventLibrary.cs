@@ -2298,10 +2298,28 @@ public class EventLibrary : MonoBehaviour
                 events = new Event()
                 {
                     buttonText = "",
-                    description = "As Big Pointy Rock looms above them, the humans deliberate whether they will climb it. They have had a long day, after all, and have all performed very admirably in tackling the challenges that the day has thrown at them. They feel contentedness in their hearts, and feel that there is a greater force on their side, protecting them from the ills of this world. Full of hope, they decide that perhaps they don’t need to climb the mountain, and can remain at the foot of it, taking shelter in a small cave as the darkness comes creeping in. They also decide that further exploration is not needed, and they have seen enough of the world to provide lasting happiness. The Dog knows that they will not be able to survive without him, and stays by their side forevermore.",
+                    description = "As Big Pointy Rock looms above them, the humans deliberate whether they will climb it. They have had a long day, after all, and have all performed very admirably in tackling the challenges that the day has thrown at them.",
                     image = Resources.Load<Sprite>("EventImages/Endings/endOpt"),
-                    continueIntruction = ContinueInstruction.Restart,
-                    continueText = endingPhrase
+                    event1 = new Event()
+                    {
+                        buttonText = "Continue",
+                        description = "They feel contentedness in their hearts, and feel that there is a greater force on their side, protecting them from the ills of this world.",
+                        image = Resources.Load<Sprite>("EventImages/Endings/endOpt"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Continue",
+                            description = "Full of hope, they decide that perhaps they don’t need to climb the mountain, and can remain at the foot of it, taking shelter in a small cave as the darkness comes creeping in. They also decide that further exploration is not needed, and they have seen enough of the world to provide lasting happiness.",
+                            image = Resources.Load<Sprite>("EventImages/Endings/endOpt"),
+                            event1 = new Event()
+                            {
+                                buttonText = "Continue",
+                                description = "The Dog knows that they will not be able to survive without him, and stays by their side forevermore.",
+                                image = Resources.Load<Sprite>("EventImages/Endings/endOpt"),
+                                continueIntruction = ContinueInstruction.Restart,
+                                continueText = endingPhrase
+                            }
+                        }
+                    }
                 }
             };
 
@@ -2310,10 +2328,28 @@ public class EventLibrary : MonoBehaviour
                 events = new Event()
                 {
                     buttonText = "",
-                    description = "As Big Pointy Rock looms above them, the humans know they have almost reached their goal. With one final push of energy, they climb up the face of it to it’s very peak. As the sun sinks towards the ground and the God of Dusk spreads his greedy fingers across the world, the humans observe the slight curve in the horizon. An epiphany strikes. They discover that the world is spherical. They conclude that the sun will rise again, and nothing is to be feared from the darkness, for it is simply the cycle of day and night. Having reached scientific enlightenment, they go on to live safe, sensible lives, but despite all their knowledge they have no science that can explain the void they feel in their souls. The Dog, knowing there is no more than he can teach them, leaves the humans be to their purposeless existences.",
+                    description = "As Big Pointy Rock looms above them, the humans know they have almost reached their goal. With one final push of energy, they climb up the face of it to it’s very peak.",
                     image = Resources.Load<Sprite>("EventImages/Endings/endWisBalanced"),
-                    continueIntruction = ContinueInstruction.Restart,
-                    continueText = endingPhrase
+                    event1 = new Event()
+                    {
+                        buttonText = "Continue",
+                        description = "As the sun sinks towards the ground and the God of Dusk spreads his greedy fingers across the world, the humans observe the slight curve in the horizon. An epiphany strikes. They discover that the world is spherical. They conclude that the sun will rise again, and nothing is to be feared from the darkness, for it is simply the cycle of day and night.",
+                        image = Resources.Load<Sprite>("EventImages/Endings/endWisBalanced"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Continue",
+                            description = "Having reached scientific enlightenment, they go on to live safe, sensible lives, but despite all their knowledge they have no science that can explain the void they feel in their souls.",
+                            image = Resources.Load<Sprite>("EventImages/Endings/endWisBalanced"),
+                            event1 = new Event()
+                            {
+                                buttonText = "Continue",
+                                description = "The Dog, knowing there is no more than he can teach them, leaves the humans be to their purposeless existences.",
+                                image = Resources.Load<Sprite>("EventImages/Endings/endWisBalanced"),
+                                continueIntruction = ContinueInstruction.Restart,
+                                continueText = endingPhrase
+                            }
+                        }
+                    }
                 }
             };
 
@@ -2322,10 +2358,28 @@ public class EventLibrary : MonoBehaviour
                 events = new Event()
                 {
                     buttonText = "",
-                    description = "As Big Pointy Rock looms above them, the humans hearts are filled with hope and the knowledge that they have the skills to complete their quest. The climb up the mountain is difficult, but together they manage to scale the monstrous rock to its very peak. They look out over the terrain that they have travelled through, and further, to lush lands filled with opportunity. As the sun sinks towards the ground and the God of Dusk spreads his greedy fingers across the world, the humans observe the slight curve in the horizon. An epiphany strikes. They discover that the world is spherical, and understand the cycle of day and night. Hopeful, they go on to thrive, combining the knowledge that they’ve accumulated with the comforting thought that a higher power is looking out for them. The Dog, not wanting to be anywhere else but with his new family, stays with them to help them on their way.",
+                    description = "As Big Pointy Rock looms above them, the humans hearts are filled with hope and the knowledge that they have the skills to complete their quest. The climb up the mountain is difficult, but together they manage to scale the monstrous rock to its very peak.",
                     image = Resources.Load<Sprite>("EventImages/Endings/endWisBalanced"),
-                    continueIntruction = ContinueInstruction.Restart,
-                    continueText = endingPhrase
+                    event1 = new Event()
+                    {
+                        buttonText = "Continue",
+                        description = "They look out over the terrain that they have travelled through, and further, to lush lands filled with opportunity. As the sun sinks towards the ground and the God of Dusk spreads his greedy fingers across the world, the humans observe the slight curve in the horizon. An epiphany strikes.",
+                        image = Resources.Load<Sprite>("EventImages/Endings/endWisBalanced"),
+                        event1 = new Event()
+                        {
+                            buttonText = "Continue",
+                            description = "They discover that the world is spherical, and understand the cycle of day and night. Hopeful, they go on to thrive, combining the knowledge that they’ve accumulated with the comforting thought that a higher power is looking out for them.",
+                            image = Resources.Load<Sprite>("EventImages/Endings/endWisBalanced"),
+                            event1 = new Event()
+                            {
+                                buttonText = "Continue",
+                                description = "The Dog, not wanting to be anywhere else but with his new family, stays with them to help them on their way.",
+                                image = Resources.Load<Sprite>("EventImages/Endings/endWisBalanced"),
+                                continueIntruction = ContinueInstruction.Restart,
+                                continueText = endingPhrase
+                            }
+                        }
+                    }
                 }
             };
 
